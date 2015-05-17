@@ -11,6 +11,7 @@
   	 	<slf4j.version>1.7.8</slf4j.version>  	 	
   	 	<hibernate.version>4.3.8.Final</hibernate.version>
   	 	<tiles.version>3.0.5</tiles.version>
+  	 	<jackson.version>2.5.0</jackson.version>
   </properties>
   <dependencies>
   	<dependency>
@@ -172,6 +173,51 @@
 			<version>${tiles.version}</version>
 		</dependency>
 		
+		<!-- Needed for XML View (with JAXB2) -->
+   <dependency>
+   	<groupId>org.springframework</groupId>
+     <artifactId>spring-oxm</artifactId>
+     <version>${springframework.version}</version>
+   </dependency>
+   <dependency>
+	  	<groupId>com.thoughtworks.xstream</groupId>
+			<artifactId>xstream</artifactId>
+			<version>1.4.8</version>
+		</dependency>
+       
+		
+		<!-- Needed for JSON View -->
+   <dependency>
+   	<groupId>com.fasterxml.jackson.core</groupId>
+     <artifactId>jackson-core</artifactId>
+     <version>${jackson.version}</version>
+   </dependency>
+   <dependency>
+   	<groupId>com.fasterxml.jackson.core</groupId>
+     <artifactId>jackson-databind</artifactId>
+     <version>${jackson.version}</version>
+   </dependency>
+   <dependency>
+   	<groupId>com.fasterxml.jackson.core</groupId>
+     <artifactId>jackson-annotations</artifactId>
+     <version>${jackson.version}</version>
+   </dependency>
+		
+   <!-- Needed for PDF View -->
+   <dependency>
+   	<groupId>com.lowagie</groupId>
+     <artifactId>itext</artifactId>
+     <version>4.2.1</version>
+   </dependency>
+ 
+   <!-- Needed for XLS View -->
+   <dependency>
+   	<groupId>org.apache.poi</groupId>
+     <artifactId>poi</artifactId>
+     <version>3.10-beta2</version>
+   </dependency>
+   
+
   </dependencies>
   <build>
     <sourceDirectory>src</sourceDirectory>

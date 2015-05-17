@@ -12,7 +12,10 @@
     </c:set>
     <title>Bookstore | <spring:message code="${titleKey}" text="Your Home in Books"/></title>
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/style.css"/>" >
-    <script src="<c:url value="/resources/jquery/jquery-1.7.1.min.js"/>"></script>  
+    <script src="<c:url value="/resources/jquery/jquery-1.7.1.min.js"/>"></script>    
+    <script src="<c:url value="/resources/angular-1.3.11/angular.min.js"/>"></script>
+    <script src="<c:url value="/resources/angular-1.3.11/angular-route.min.js"/>"></script>
+    <script src="<c:url value="/resources/angular-1.3.11/angular-resource.js"/>"></script>
 
 </head>
 <body>
