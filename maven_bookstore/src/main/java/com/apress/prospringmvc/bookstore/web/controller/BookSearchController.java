@@ -1,11 +1,17 @@
 package com.apress.prospringmvc.bookstore.web.controller;
 
+import java.beans.PropertyEditorSupport;
 import java.util.Collection;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.ServletRequestDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,11 +36,22 @@ public class BookSearchController {
    	
    @Autowired
    private BookstoreService bookstoreService;
+   
+   @InitBinder
+   protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) throws Exception {
+       binder.registerCustomEditor(String.class, "startDae", new PropertyEditorSupport() {
+       @Override
+       public void setAsText(String text) {
+           String value = text.replace(".", "");
+           setValue(value);
+       }
+       });
+   }
 
    @ModelAttribute
    public BookSearchCriteria criteria() {
-	     return new BookSearchCriteria();
-        }
+	   return new BookSearchCriteria();
+   }
 
    @ModelAttribute("categories")
    public List<Category> getCategories() {
@@ -52,8 +69,8 @@ public class BookSearchController {
      * @see com.apress.prospringmvc.bookstore.repository.BookRepository#findBooks(BookSearchCriteria)
      */
 	@RequestMapping(value = "/book/search")
-	public Collection<Book> list(@ModelAttribute("bookSearchCriteria") BookSearchCriteria criteria) {
-	   return this.bookstoreService.findBooks(criteria);	     
+	public Collection<Book> list(@ModelAttribute("bookSearchCriteria") BookSearchCriteria criteriam ) {
+	   return this.bookstoreService.findBooks(criteriam);	     
     }
 
     /**

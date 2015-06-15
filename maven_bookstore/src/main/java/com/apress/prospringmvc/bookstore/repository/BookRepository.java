@@ -2,6 +2,8 @@ package com.apress.prospringmvc.bookstore.repository;
 
 import java.util.List;
 
+import org.springframework.data.domain.Pageable;
+
 import com.apress.prospringmvc.bookstore.domain.Book;
 import com.apress.prospringmvc.bookstore.domain.BookSearchCriteria;
 import com.apress.prospringmvc.bookstore.domain.Category;

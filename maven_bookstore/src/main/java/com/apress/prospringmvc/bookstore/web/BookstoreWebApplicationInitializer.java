@@ -4,6 +4,7 @@ import java.util.EnumSet;
 
 import javax.servlet.DispatcherType;
 import javax.servlet.FilterRegistration;
+import javax.servlet.MultipartConfigElement;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration;
@@ -25,6 +26,10 @@ public class BookstoreWebApplicationInitializer implements WebApplicationInitial
 
 	private static final Logger logger = LoggerFactory.getLogger(BookstoreWebApplicationInitializer.class);
 	private static final String DISPATCHER_SERVLET_NAME = "dispatcher";
+	
+	private static final long MAX_FILE_UPLOAD_SIZE = 1024 * 1024 * 5;
+	private static final int FILE_SIZE_THRESHOD = 1024 * 1024;
+	private static final long MAX_REQUEST_SIZE = -1L;
 	
 	@Override
 	public void onStartup(ServletContext servletContext) throws ServletException {
@@ -51,6 +56,8 @@ public class BookstoreWebApplicationInitializer implements WebApplicationInitial
 		ServletRegistration.Dynamic dispatcher = servletContext.addServlet(DISPATCHER_SERVLET_NAME, dispatcherServlet);
 		dispatcher.setLoadOnStartup(1);
 		dispatcher.addMapping("/");
+		
+		dispatcher.setMultipartConfig(new MultipartConfigElement("/home/chotom", MAX_FILE_UPLOAD_SIZE, MAX_REQUEST_SIZE, FILE_SIZE_THRESHOD));
 	}
 
 	private AnnotationConfigWebApplicationContext createContext(final Class<?>... annotatedClasses) {

@@ -1,5 +1,8 @@
 package com.apress.prospringmvc.bookstore.web.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.apress.prospringmvc.bookstore.domain.Account;
+import com.apress.prospringmvc.bookstore.domain.Role;
 import com.apress.prospringmvc.bookstore.service.AccountService;
 import com.apress.prospringmvc.bookstore.service.AuthenticationException;
 
@@ -37,6 +41,8 @@ public class LoginController {
 																		 HttpServletRequest request, HttpSession session) throws AuthenticationException {
 		
 		Account account = accountService.login(username, password);
+		List<Role> roles = new ArrayList<Role>();
+        roles.add(new Role("ROLE_ADMIN"));
 		session.setAttribute(ACCOUNT_ATTRIBUTE, account);
 		String url = (String)session.getAttribute(REQUESTED_URL);
 		session.removeAttribute(REQUESTED_URL);

@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,7 +24,7 @@ public class BookSearchRestController {
 	private BookstoreService bookstoreService;
 	
 	 @RequestMapping(value = "/book/searchJson")
-	 public Collection<Book> listJSON(@RequestBody BookSearchCriteriaJSON criteriaJSON, HttpServletRequest req) {
+	 public Collection<Book> listJSON(@RequestBody BookSearchCriteriaJSON criteriaJSON) {
 		   BookSearchCriteria criteria = new BookSearchCriteria();
 		   Category category = new Category();
 		   category.setId(criteriaJSON.getCategory());

@@ -25,4 +25,7 @@
     		<put-attribute name="title" value="{1}.{2}.pop/title"/>
     		<put-attribute name="body" value="/WEB-INF/views/{1}/{2}_pop.jsp"/>	
     </definition>	
+    
+    
+    
 </tiles-definitions>

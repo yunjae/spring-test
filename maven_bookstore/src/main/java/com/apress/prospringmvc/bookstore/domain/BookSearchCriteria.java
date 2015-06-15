@@ -11,6 +11,8 @@ public class BookSearchCriteria {
 
     private String title;
     private Category category;
+    
+    private String startDae;
 
     public String getTitle() {
         return this.title;
@@ -28,4 +30,12 @@ public class BookSearchCriteria {
         return this.category;
     }
 
+	public String getStartDae() {
+		return startDae;
+	}
+
+	public void setStartDae(String startDae) {
+		this.startDae = startDae;
+	}
+    
 }
